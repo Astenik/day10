@@ -1,31 +1,43 @@
-def min_(nums):
-     m = nums[0]
-     for num in nums:
-         if num < m:
-             m = num
-     return m
 def array_partition(nums):
       n = len(nums) // 2
-      lst = []
-      my_dict = {f'{0}': lst}
-      for i in range(len(nums) - 1):
-          lst = []
-          for j in range(i + 1, len(nums)):
-               lst.append((nums[i], nums[j]))
-          my_dict[f'{i}'] = lst 
-      res = []
-      for key in my_dict:
-           _max = 1
-           for num in my_dict[key]:
-               if min_(num) > _max:
-                    _max = min_(num)
-           res.append(_max)
-      for ii in range(len(res)):
-          for jj in range(len(res) - ii - 1):
-               if res[jj] < res[jj + 1]:
-                   res[jj], res[jj + 1] = res[jj + 1], res[jj]
+      _max = []
       _sum = 0
-      for k in range(n):
-          _sum += res[k]
-      return _sum 
-print(array_partition([1, 4, 3, 2]))
+      _sum1 = 0
+      _sum2 = 0 
+      _sum3 = 0
+      _sum4 = 0
+      _sum5 = 0
+      _sum6 = 0
+      _sum7 = 0
+      rev_nums = nums[::-1]
+      half_nums0 = nums[::2]
+      half_nums1 = nums[1::2]
+      re_half0 = half_nums0[::-1]
+      re_half1 = half_nums1[::-1]
+      fr_half = nums[:n]
+      se_half = nums[n:]
+      rev_fr_half = fr_half[::-1]
+      rev_se_half = se_half[::-1]
+      for i in range(n):
+         _sum += min(half_nums0[i], half_nums1[i])
+         _sum1 += min(half_nums0[i], re_half1[i])
+         _sum2 += min(re_half0[i], half_nums1[i])
+         _sum3 += min(re_half0[i], re_half1[i])
+         _sum4 += min(fr_half[i], se_half[i])
+         _sum5 += min(fr_half[i], rev_se_half[i])
+         _sum6 += min(rev_fr_half[i], se_half[i])
+         _sum7 += min(rev_fr_half[i], rev_se_half[i])
+      _max.append(_sum)
+      _max.append(_sum1)
+      _max.append(_sum2)
+      _max.append(_sum3)
+      _max.append(_sum4)
+      _max.append(_sum5)
+      _max.append(_sum6)
+      _max.append(_sum7)
+      M = _max[0]
+      for num in _max:
+           if num > M:
+              M = num 
+      return M
+print(array_partition([6, 2, 6, 5, 1, 2]))
