@@ -1,7 +1,3 @@
-def set_null(*num2):
-      '''this function sets null all arguments of function.'''
-      for num in num2:
-           num = 0
 def lst_append(lst, *num):
        '''this function appends *num to the list.'''
        for n in num:
@@ -39,17 +35,6 @@ def array_partition(nums):
          _sum6 += min(rev_fr_half[i], se_half[i])
          _sum7 += min(rev_fr_half[i], rev_se_half[i])
       lst_append(_max, _sum, _sum1, _sum2, _sum3, _sum4, _sum5, _sum6, _sum7)
-      set_null(_sum, _sum1, _sum2, _sum3, _sum4, _sum5, _sum6, _sum7)
-      for j in range(len(fr_half[::2])):
-          _sum += min(fr_half[j], se_half[::2][j])
-          _sum1 += min(fr_half[::2][j], se_half[j])
-          _sum2 += min(rev_fr_half[j], se_half[::2][j])
-          _sum3 += min(rev_fr_half[::2][j], se_half[j])
-          _sum4 += min(fr_half[j], rev_se_half[::2][j])
-          _sum5 +=  min(fr_half[::2][j], rev_se_half[j])
-          _sum6 += min(rev_fr_half[j], rev_se_half[::2][j])
-          _sum7 += min(rev_fr_half[::2][j], rev_se_half[j])
-      m = len(fr_half[1::2])
       M = _max[0]
       for num in _max:
            if num > M:
