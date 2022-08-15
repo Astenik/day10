@@ -1,4 +1,15 @@
+def set_null(*num2):
+      '''this function sets null all arguments of function.'''
+      for num in num2:
+           num = 0
+def lst_append(lst, *num):
+       '''this function appends *num to the list.'''
+       for n in num:
+          lst.append(n)
 def array_partition(nums):
+      '''given an integer array nums of 2n integers, group these integers
+      into n pairs (a1, b1), (a2, b2), ..., (an, bn) such that the sum of 
+      min(ai, bi) for all i is maxsimizedd. this function returns the maximized sum.'''
       n = len(nums) // 2
       _max = []
       _sum = 0
@@ -27,17 +38,21 @@ def array_partition(nums):
          _sum5 += min(fr_half[i], rev_se_half[i])
          _sum6 += min(rev_fr_half[i], se_half[i])
          _sum7 += min(rev_fr_half[i], rev_se_half[i])
-      _max.append(_sum)
-      _max.append(_sum1)
-      _max.append(_sum2)
-      _max.append(_sum3)
-      _max.append(_sum4)
-      _max.append(_sum5)
-      _max.append(_sum6)
-      _max.append(_sum7)
+      lst_append(_max, _sum, _sum1, _sum2, _sum3, _sum4, _sum5, _sum6, _sum7)
+      set_null(_sum, _sum1, _sum2, _sum3, _sum4, _sum5, _sum6, _sum7)
+      for j in range(len(fr_half[::2])):
+          _sum += min(fr_half[j], se_half[::2][j])
+          _sum1 += min(fr_half[::2][j], se_half[j])
+          _sum2 += min(rev_fr_half[j], se_half[::2][j])
+          _sum3 += min(rev_fr_half[::2][j], se_half[j])
+          _sum4 += min(fr_half[j], rev_se_half[::2][j])
+          _sum5 +=  min(fr_half[::2][j], rev_se_half[j])
+          _sum6 += min(rev_fr_half[j], rev_se_half[::2][j])
+          _sum7 += min(rev_fr_half[::2][j], rev_se_half[j])
+      m = len(fr_half[1::2])
       M = _max[0]
       for num in _max:
            if num > M:
               M = num 
       return M
-print(array_partition([6, 2, 6, 5, 1, 2]))
+print(f"the maxiized sum is: {array_partition([6, 2, 6, 5, 1, 2])}")
