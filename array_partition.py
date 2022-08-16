@@ -1,11 +1,11 @@
 def lst_append(lst, *num):
-       '''this function appends *num to the list.'''
+       '''thes function appends *num to the list.'''
        for n in num:
           lst.append(n)
 def array_partition(nums):
-      '''given an integer array nums of 2n integers, group these integers
-      into n pairs (a1, b1), (a2, b2), ..., (an, bn) such that the sum of 
-      min(ai, bi) for all i is maxsimizedd. this function returns the maximized sum.'''
+      '''Given an integer array nums of 2n integers, group these 
+      integers into n pairs (a1, b1), (a2, b2), ... , (an, bn) such that the sum of 
+      min(ai, bi) for all i is maximized. These function returns the maximized sum.'''
       n = len(nums) // 2
       _max = []
       _sum = 0
@@ -25,7 +25,9 @@ def array_partition(nums):
       se_half = nums[n:]
       rev_fr_half = fr_half[::-1]
       rev_se_half = se_half[::-1]
+      # dividing list to n pairs.
       for i in range(n):
+         # counting the sum mins all n pairs
          _sum += min(half_nums0[i], half_nums1[i])
          _sum1 += min(half_nums0[i], re_half1[i])
          _sum2 += min(re_half0[i], half_nums1[i])
@@ -34,6 +36,34 @@ def array_partition(nums):
          _sum5 += min(fr_half[i], rev_se_half[i])
          _sum6 += min(rev_fr_half[i], se_half[i])
          _sum7 += min(rev_fr_half[i], rev_se_half[i])
+      lst_append(_max, _sum, _sum1, _sum2, _sum3, _sum4, _sum5, _sum6, _sum7)
+      _sum = 0
+      _sum1 = 0
+      _sum2 = 0 
+      _sum3 = 0
+      _sum4 = 0
+      _sum5 = 0
+      _sum6 = 0
+      _sum7 = 0
+      for j in range(len(fr_half[::2])):
+          _sum += min(fr_half[j], se_half[::2][j])
+          _sum1 += min(fr_half[::2][j], se_half[j])
+          _sum2 += min(fr_half[j], rev_se_half[::2][j])
+          _sum3 += min(fr_half[::2][j], rev_se_half[j])
+          _sum4 += min(rev_fr_half[j], se_half[::2][j])
+          _sum5 += min(rev_fr_half[::2][j], se_half[j])
+          _sum6 += min(rev_fr_half[j], rev_se_half[::2][j])
+          _sum7 += min(rev_fr_half[::2][j], rev_se_half[j])
+      m = len(fr_half[::2])
+      for jj in range(len(fr_half[1::2])):
+          _sum += min(fr_half[jj + m - 1], se_half[::2][jj])
+          _sum1 += min(fr_half[::2][jj], se_half[jj + m - 1])
+          _sum2 += min(fr_half[jj + m - 1], rev_se_half[::2][jj])
+          _sum3 += min(fr_half[::2][jj], rev_se_half[jj + m - 1])
+          _sum4 += min(rev_fr_half[jj + m - 1], se_half[::2][jj])
+          _sum5 += min(rev_fr_half[::2][jj], se_half[jj + m - 1])
+          _sum6 += min(rev_fr_half[jj + m - 1], rev_se_half[::2][jj])
+          _sum7 += min(rev_fr_half[::2][jj], rev_se_half[jj + m - 1])
       lst_append(_max, _sum, _sum1, _sum2, _sum3, _sum4, _sum5, _sum6, _sum7)
       M = _max[0]
       for num in _max:
