@@ -13,4 +13,4 @@ for num1 in range(999, 100, -1):
               num = num1 * num2
               if is_palindrome(num):
                     break
-print(f"the largest palindrome prodactconsists of  two three- digits numbers' multipy is: {num1}")
+print(f"the largest palindrome prodactconsists of  two three- digits numbers' multipy is: {num}")
