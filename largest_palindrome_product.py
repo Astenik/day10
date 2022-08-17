@@ -10,6 +10,7 @@ def is_palindrome(number):
       return num == cpy_number # checking if original number is equal to reversed number
 for num1 in range(999, 100, -1):
       for num2 in range(999, 100, -1):
-              if is_palindrome(num1*num2):
+              num = num1 * num2
+              if is_palindrome(num):
                     break
-print(num1*num2)
+print(f"the largest palindrome prodactconsists of  two three- digits numbers' multipy is: {num1}")
